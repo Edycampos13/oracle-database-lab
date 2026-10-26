@@ -194,3 +194,52 @@ La ITL muestra --U- y Lck=85, un patrón como el del primer volcado,
 compatible con limpieza diferida; no acredita bloqueos activos actuales.
 Evidencia: script/*_12-reto-otro-bloque.script.log y
 config/*_12-reto-otro-bloque.trc.txt.
+
+## Diseño: acceso temporal de una auditora
+
+Crearía un usuario LOCAL en FREEPDB1, porque solo necesita datos de
+ADMIN_CLINICA. No necesita usuario común, SET CONTAINER ni rol DBA.
+
+SQL propuesto; no ejecutado:
+ALTER SESSION SET CONTAINER = FREEPDB1;
+CREATE USER auditor_clinica IDENTIFIED BY "<secreto_generado>";
+GRANT CREATE SESSION TO auditor_clinica;
+GRANT READ ANY TABLE ON SCHEMA admin_clinica TO auditor_clinica;
+
+La credencial se entregaría por un canal seguro y no se guardaría en Git.
+El permiso cubre también tablas futuras de Clínica: se debe confirmar
+que ese alcance es adecuado antes de concederlo.
+
+Al terminar la semana:
+REVOKE READ ANY TABLE ON SCHEMA admin_clinica FROM auditor_clinica;
+REVOKE CREATE SESSION FROM auditor_clinica;
+ALTER USER auditor_clinica ACCOUNT LOCK;
+
+Revocar CREATE SESSION impide conexiones nuevas, pero no termina las
+ya abiertas: se localizarían y cerrarían las sesiones de esta cuenta.
+No se concede UPDATE, acceso a otros esquemas ni permisos administrativos.
+Justificación: evidencia 10 de LAB4_ANALISTA y permisos de esquema.
+
+## Petición de cambio: OPEN_CURSORS
+
+Situación: OPEN_CURSORS=300, confirmado en evidencia 07 en CDB$ROOT.
+Antes de modificarlo comprobaría el valor efectivo en la PDB afectada,
+el consumo por sesión en V$OPEN_CURSOR y si la aplicación cierra cursores.
+
+Propuesta condicionada al diagnóstico: elevar el límite a 1000 en
+FREEPDB1. Primero SCOPE=MEMORY para una prueba controlada; si se aprueba
+el resultado, SCOPE=BOTH para persistirlo.
+
+Prueba: reproducir la carga que daba ORA-01000, comprobar errores,
+cursores abiertos por sesión y consumo de memoria antes y después.
+Que desaparezca el error no demuestra que se haya corregido una fuga.
+
+Rollback de la prueba:
+ALTER SYSTEM RESET open_cursors SCOPE=MEMORY;
+Esto devuelve la herencia del CDB si antes no existía una excepción local.
+Si el cambio se hubiera persistido, se retiraría también la excepción
+del SPFILE y se comprobaría el valor efectivo de la PDB.
+
+Evidencia a guardar: valores previos, SQL aplicado, métricas por sesión,
+errores, resultado de la carga y comprobación del rollback.
+Diseño propuesto: no se ha elevado el límite a 1000.
