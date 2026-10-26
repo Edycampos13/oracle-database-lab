@@ -1,0 +1,22 @@
+WHENEVER SQLERROR EXIT FAILURE
+SET SERVEROUTPUT ON
+ALTER SESSION SET CONTAINER = FREEPDB1;
+
+EXEC DBMS_APPLICATION_INFO.SET_MODULE('LAB4_RETO_SESION', 'LECTURA');
+
+DECLARE
+  inicio NUMBER := DBMS_UTILITY.GET_TIME;
+  resultado NUMBER;
+  rondas NUMBER := 0;
+BEGIN
+  WHILE DBMS_UTILITY.GET_TIME - inicio < 4500 LOOP
+    SELECT /* lab4_reto_sesion */ SUM(MOD(matricula_id, 97))
+    INTO resultado
+    FROM admin_academia.aca_matriculas;
+    rondas := rondas + 1;
+  END LOOP;
+  DBMS_OUTPUT.PUT_LINE('Rondas completadas: ' || rondas);
+END;
+/
+EXEC DBMS_APPLICATION_INFO.SET_MODULE(NULL, NULL);
+EXIT

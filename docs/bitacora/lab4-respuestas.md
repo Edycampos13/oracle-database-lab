@@ -168,3 +168,16 @@ Contar SQL_ID distintos permite distinguir textos diferentes de varios
 cursores hijos del mismo texto. El recuento refleja los cursores presentes
 en caché en ese momento, no todo el historial de ejecuciones.
 Evidencia: script/*_08-reto-literales.script.log.
+
+## Reto de observación simultánea completado
+
+Desde una segunda terminal, C##OPS_RO observó la carga de lectura
+identificada con MODULE=LAB4_RETO_SESION.
+La sesión estaba ACTIVE: SID=57, SERIAL#=37711 y SPID=6414.
+Su PGA usada era 1,94 MB y la asignada 2,12 MB.
+SQL_ID=gp5nd3q0yxju1 coincidió con:
+SELECT SUM(MOD(MATRICULA_ID, 97))
+FROM ADMIN_ACADEMIA.ACA_MATRICULAS.
+La captura identifica la sesión de prueba, sin acreditar que fuera
+la de mayor consumo global.
+Evidencia: script/*_09-reto-observar.script.log.
