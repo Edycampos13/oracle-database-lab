@@ -147,3 +147,14 @@ La comprobación con readlink confirmó que el SPFILE y el password file
 están dentro del volumen, bajo /opt/oracle/oradata/dbconfig/FREE/dbs/.
 Es la carpeta dbs completa la que está enlazada.
 Evidencia: script/*_11-rutas-configuracion.script.log.
+
+## Reto OMF completado
+
+En FREEPDB1 configuré DB_CREATE_FILE_DEST con SCOPE=BOTH a
+/opt/oracle/oradata/FREE/FREEPDB1.
+Al crear TBS_LAB4_OMF sin nombre explícito de datafile, Oracle generó
+un archivo OMF bajo ese destino. Después eliminé el tablespace:
+TABLESPACES_PRUEBA_RESTANTES=0.
+La configuración permanece para futuras creaciones que omitan
+el nombre del archivo; no corrige rutas explícitas incorrectas.
+Evidencia: script/*_03-reto-omf.script.log.
