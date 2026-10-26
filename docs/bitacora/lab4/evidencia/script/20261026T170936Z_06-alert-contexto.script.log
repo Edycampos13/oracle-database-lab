@@ -1,0 +1,180 @@
+Completed: ALTER DATABASE DISMOUNT
+2026-10-26T17:06:56.455382+00:00
+JIT: pid 1558 requesting stop
+2026-10-26T17:06:57.399399+00:00
+JIT: pid 1558 requesting stop
+2026-10-26T17:06:58.434083+00:00
+Instance shutdown complete (OS id: 1558)
+2026-10-26T17:06:58.827695+00:00
+Adjusting the default value of parameter "parallel_max_servers" from 0 to 1.
+Starting ORACLE instance (normal) (OS id: 1560)
+2026-10-26T17:06:59.013202+00:00
+****************************************************
+ Sys-V shared memory will be used for creating SGA 
+ ****************************************************
+2026-10-26T17:06:59.016178+00:00
+**********************************************************************
+2026-10-26T17:06:59.016386+00:00
+Dump of system resources acquired for SHARED GLOBAL AREA (SGA) 
+
+2026-10-26T17:06:59.016659+00:00
+ Per process system memlock (soft) limit = UNLIMITED
+2026-10-26T17:06:59.016759+00:00
+ Expected per process system memlock (soft) limit to lock
+ instance MAX SHARED GLOBAL AREA (SGA) into memory: 1532M
+2026-10-26T17:06:59.016946+00:00
+ Available system pagesizes:
+  4K, 2048K 
+2026-10-26T17:06:59.017156+00:00
+ Supported system pagesize(s):
+2026-10-26T17:06:59.017254+00:00
+  PAGESIZE  AVAILABLE_PAGES  EXPECTED_PAGES  ALLOCATED_PAGES  ERROR(s)
+2026-10-26T17:06:59.017353+00:00
+        4K       Configured               5           391460        NONE
+2026-10-26T17:06:59.017780+00:00
+     2048K                0             766                0        NONE
+2026-10-26T17:06:59.018596+00:00
+RECOMMENDATION:
+2026-10-26T17:06:59.023452+00:00
+ 1. For optimal performance, configure system with expected number 
+ of pages for every supported system pagesize prior to the next 
+ instance restart operation.
+2026-10-26T17:06:59.024418+00:00
+**********************************************************************
+Using an SGA granule size of 16MB
+Memory protection keys NOT enabled.
+Hugetlbfs Dynamic SGA NOT enabled.
+LICENSE_MAX_SESSION = 0
+LICENSE_SESSIONS_WARNING = 0
+Using LOG_ARCHIVE_DEST_1 parameter default value as /opt/oracle/product/26ai/dbhomeFree/dbs/arch
+.... (PID:): Enable RFS client   [kcrlc.c:611]
+Autotune of undo retention is turned on. 
+Log buffer boundaries=(0xd0000000, 0xd0452000)
+IMODE=BR
+ILAT =35
+2026-10-26T17:07:00.099801+00:00
+NOTE: Using default ASM root directory ASM
+Oracle AI Database 26ai Free Release 23.26.3.0.0 - Develop, Learn, and Run for Free
+Version 23.26.3.0.0.
+ORACLE_HOME:    /opt/oracle/product/26ai/dbhomeFree
+System name:	Linux
+Node name:	979ebb9617bc
+Release:	6.18.54.1-microsoft-standard-WSL2
+Version:	#1 SMP PREEMPT_DYNAMIC Tue Oct  6 19:13:07 UTC 2026
+Machine:	x86_64
+Using parameter settings in server-side spfile /opt/oracle/product/26ai/dbhomeFree/dbs/spfileFREE.ora
+System parameters with non-default values:
+  processes                = 200
+  nls_language             = "AMERICAN"
+  nls_territory            = "AMERICA"
+  sga_target               = 1536M
+  control_files            = "/opt/oracle/oradata/FREE/control01.ctl"
+  control_files            = "/opt/oracle/oradata/FREE/control02.ctl"
+  db_block_size            = 8192
+  compatible               = "23.6.0"
+  _instance_recovery_bloom_filter_size= 1048576
+  undo_tablespace          = "UNDOTBS1"
+  fast_start_parallel_rollback= "FALSE"
+  remote_login_passwordfile= "EXCLUSIVE"
+  dispatchers              = "(PROTOCOL=TCP) (SERVICE=FREEXDB)"
+  local_listener           = ""
+  db_name                  = "FREE"
+  open_cursors             = 300
+  pga_aggregate_target     = 512M
+  diagnostic_dest          = "/opt/oracle"
+  enable_pluggable_database= TRUE
+2026-10-26T17:07:00.186112+00:00
+Oracle instance running with ODM in SGA: Oracle File Server ODM Library, Version: 1.0 
+Oracle instance running with ODM in SGA: FSDirect ODM Library Version 1.0 
+Oracle instance running with ODM in SGA: Object Store ODM Library Version 8.0 
+Broadcast on commit is enabled and is using Message mode.
+2026-10-26T17:07:00.822562+00:00
+Errors in file /opt/oracle/diag/rdbms/free/FREE/trace/FREE_vktm_1575.trc  (incident=9653) (PDBNAME=CDB$ROOT):
+ORA-00800: soft external error, arguments: [Set Priority Failed], [VKTM], [Check traces and OS configuration], [Check Oracle document and MOS notes], []
+Incident details in: /opt/oracle/diag/rdbms/free/FREE/incident/incdir_9653/FREE_vktm_1575_i9653.trc
+--ATTENTION--
+The priority of process VKTM cannot be elevated.
+
+Failed to elevate VKTM's priority from 0 to 1, policy 5
+Error : Category(-2), Opname(skgdism_send), Loc(sp.c:setpr:0), ErrMsg(Operation not permitted) Dism(128)
+NMON services are only available for Exadata and OCI. Not running on proper platform, disable NMON services.
+Using default pga_aggregate_limit of 2048 MB
+2026-10-26T17:07:02.602118+00:00
+Errors in file /opt/oracle/diag/rdbms/free/FREE/trace/FREE_lgwr_1611.trc  (incident=9773) (PDBNAME=CDB$ROOT):
+ORA-00800: soft external error, arguments: [Set Priority Failed], [LGWR], [Check traces and OS configuration], [Check Oracle document and MOS notes], []
+Incident details in: /opt/oracle/diag/rdbms/free/FREE/incident/incdir_9773/FREE_lgwr_1611_i9773.trc
+--ATTENTION--
+The priority of process LGWR cannot be elevated.
+
+Failed to elevate LGWR's priority from 0 to 1, policy 5
+Error : Category(-2), Opname(skgdism_send), Loc(sp.c:setpr:0), ErrMsg(Operation not permitted) Dism(128)
+2026-10-26T17:07:06.065955+00:00
+starting up 1 dispatcher(s) for network address '(ADDRESS=(PARTIAL=YES)(PROTOCOL=TCP))'...
+starting up 1 shared server(s) ...
+WALLET_ROOT location is not configured.
+ORACLE_BASE from environment = /opt/oracle
+PMEM FILESTORE feature is only available in Oracle Database Enterprise Edition.
+2026-10-26T17:07:07.541697+00:00
+ALTER DATABASE MOUNT
+Control File SGA cache allocated 8388608 bytes. 
+	Address           : 0x7b2c2908
+	Number of buckets : 128
+	Number of pools   : 4
+	Number of buffers : 512
+	Block size        : 16384
+	Version           : 0
+	Stat              : 
+(
+0x0000000000000080 (USESEQLIST)
+, 0x0000000000000002 (ACTIVE)
+, 0x0000000000000001 (CREATE)
+)
+	Trace level-10325 : 
+(0x0000000000000000)
+2026-10-26T17:07:07.657990+00:00
+.... (PID:1708): RT_PMODE: PRIMARY            mounting with mode MAXIMUM PERFORMANCE  level NO PROTECTION  [krsj.c:4563]
+2026-10-26T17:07:07.753008+00:00
+Successful mount of redo thread 1, with mount id 1519744507
+2026-10-26T17:07:07.754307+00:00
+Database mounted in Exclusive Mode
+Lost write protection mode set to "auto"
+Database name: FREE
+Database unique name: FREE
+Database id: 1509902213
+Completed: ALTER DATABASE MOUNT
+2026-10-26T17:07:08.714815+00:00
+ALTER DATABASE OPEN
+*** 2026-10-26T17:07:08.792484+00:00
+Crash Recovery excluding pdb 2 which was cleanly closed.
+*** 2026-10-26T17:07:08.794023+00:00
+Crash Recovery excluding pdb 3 which was cleanly closed.
+2026-10-26T17:07:08.882116+00:00
+Redo log for group 1, sequence 4 is not located on DAX storage
+Thread 1 opened at log sequence 4
+  Current log# 1 seq# 4 mem# 0: /opt/oracle/oradata/FREE/redo01.log
+Successful open of redo thread 1
+MTTR advisory is disabled because FAST_START_MTTR_TARGET is not set
+2026-10-26T17:07:09.024836+00:00
+Stopping change tracking
+2026-10-26T17:07:14.758397+00:00
+replication_dependency_tracking turned off (no async multimaster replication found)
+2026-10-26T17:07:17.410805+00:00
+Opening with Resource Manager plan: DEFAULT_CDB_PLAN 
+CLID: P
+PDB$SEED(2):Autotune of undo retention is turned on. 
+2026-10-26T17:07:22.452378+00:00
+PDB$SEED(2):Opening pdb with Resource Manager plan: DEFAULT_PLAN
+FREEPDB1(3):Autotune of undo retention is turned on. 
+2026-10-26T17:07:29.419162+00:00
+FREEPDB1(3):Opening pdb with Resource Manager plan: DEFAULT_PLAN
+Completed: Pluggable database FREEPDB1 opened read write 
+Completed: ALTER DATABASE OPEN
+2026-10-26T17:07:35.347763+00:00
+===========================================================
+Dumping current patch information
+===========================================================
+No patches have been applied
+===========================================================
+2026-10-26T17:07:37.164450+00:00
+--ATTENTION--
+The system is observing online redo log writes that are taking longer than expected to complete. This can lead to system performance instability.
