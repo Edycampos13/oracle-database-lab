@@ -181,3 +181,16 @@ FROM ADMIN_ACADEMIA.ACA_MATRICULAS.
 La captura identifica la sesión de prueba, sin acreditar que fuera
 la de mayor consumo global.
 Evidencia: script/*_09-reto-observar.script.log.
+
+## Reto de otro bloque completado
+
+El estudiante 19501 tiene ROWID AAAR2uAAAAAAASFABO:
+objeto 73134, archivo 16, bloque 1157 y slot 78.
+Su bloque contiene 85 filas frente a 90 en el bloque 782.
+El espacio disponible es 0x3f6-0xbc=0x33a=826 bytes,
+frente a 865 bytes en el bloque del estudiante 101.
+La fila ocupa 83 bytes: 73 de datos, 7 de longitudes y 3 de cabecera.
+La ITL muestra --U- y Lck=85, un patrón como el del primer volcado,
+compatible con limpieza diferida; no acredita bloqueos activos actuales.
+Evidencia: script/*_12-reto-otro-bloque.script.log y
+config/*_12-reto-otro-bloque.trc.txt.
