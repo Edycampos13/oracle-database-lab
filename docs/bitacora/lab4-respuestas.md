@@ -137,9 +137,17 @@ Las letras corresponden a las opciones del enunciado v3. Son respuestas razonada
 
 ## Estado y límites de la entrega
 
-La verificación técnica E16 terminó TODO OK. Esto no acredita por sí solo el cierre documental, la revisión del PR ni los retos adicionales. RTO de restauración no medido. Comprobación de secretos, commits por partes, Issue, PR, revisión y etiquetas pendientes al redactar este archivo.
+La verificación técnica final terminó TODO OK tras los retos.
+Se completaron OMF, detección de literales, observación simultánea
+de una sesión y volcado de otro bloque, además de los diseños escritos
+de acceso temporal y cambio de OPEN_CURSORS.
+Las secciones posteriores contienen sus medidas y evidencias.
 
-Retos prácticos adicionales no acreditados con evidencia en esta conversación: configuración OMF persistente, diagnóstico por force_matching_signature, captura simultánea de sesión de mayor consumo y volcado de otro estudiante. No se presentan como realizados.
+El RTO de restauración no está medido. La observación simultánea
+identifica la sesión de prueba, sin demostrar que fuera la de mayor
+consumo global. El control inicial de las cuatro contraseñas actuales
+no encontró coincidencias en archivos ni historia; debe repetirse antes
+del cierre. El PR #3 está abierto; revisión, merge y etiquetas pendientes.
 
 ## Actualización de la respuesta 21
 

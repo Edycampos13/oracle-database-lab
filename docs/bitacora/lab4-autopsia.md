@@ -35,9 +35,16 @@ Instancia FREE, Oracle 23.26.3.0.0, host 979ebb9617bc, OPEN/ACTIVE. Base FREE, D
 
 Los experimentos mostraron cero lecturas físicas en caché caliente, reutilización de cursor con bind y uso de TEMP con PGA limitada. Los tiempos pertenecen a Docker/WSL2 y pueden incluir caché de Linux y carga del host; no representan latencia directa de un disco de producción.
 
-## Pendientes de cierre
+## Estado de cierre actualizado
 
-Verificar las rutas físicas del SPFILE/password file con readlink: la sección Linux de dbs quedó vacía y no permite concluir que falten. Investigar el contexto de ORA-959. Completar los retos adicionales que se entreguen, el control de secretos y el flujo de revisión/merge/etiquetado. Tras el cierre, generar el respaldo lab4-final antes de los experimentos del Lab 5.
+Las comprobaciones posteriores resolvieron las rutas del SPFILE y
+password file y el contexto de ORA-959, como se detalla a continuación.
+Los retos realizados están documentados en lab4-respuestas.md.
+La última verificación técnica termina TODO OK.
+Siguen pendientes la revisión del PR, el cierre en GitHub y el respaldo
+lab4-final. El RTO de restauración no se ha medido.
+Los hallazgos originales de la tabla representan el diagnóstico inicial;
+las comprobaciones posteriores actualizan su estado.
 
 ## Comprobaciones posteriores
 
