@@ -158,3 +158,13 @@ TABLESPACES_PRUEBA_RESTANTES=0.
 La configuración permanece para futuras creaciones que omitan
 el nombre del archivo; no corrige rutas explícitas incorrectas.
 Evidencia: script/*_03-reto-omf.script.log.
+
+## Reto de detección de literales completado
+
+La consulta agrupada por FORCE_MATCHING_SIGNATURE encontró una familia
+con 701 SQL_ID distintos y 701 cursores hijos. EJEMPLO_SQL contenía
+SELECT /* lab4_literal */, lo que identifica la consulta del experimento.
+Contar SQL_ID distintos permite distinguir textos diferentes de varios
+cursores hijos del mismo texto. El recuento refleja los cursores presentes
+en caché en ese momento, no todo el historial de ejecuciones.
+Evidencia: script/*_08-reto-literales.script.log.
