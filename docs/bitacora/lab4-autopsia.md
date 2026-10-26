@@ -38,3 +38,20 @@ Los experimentos mostraron cero lecturas físicas en caché caliente, reutilizac
 ## Pendientes de cierre
 
 Verificar las rutas físicas del SPFILE/password file con readlink: la sección Linux de dbs quedó vacía y no permite concluir que falten. Investigar el contexto de ORA-959. Completar los retos adicionales que se entreguen, el control de secretos y el flujo de revisión/merge/etiquetado. Tras el cierre, generar el respaldo lab4-final antes de los experimentos del Lab 5.
+
+## Comprobaciones posteriores
+
+El SPFILE y el password file resuelven respectivamente a
+/opt/oracle/oradata/dbconfig/FREE/dbs/spfileFREE.ora y
+/opt/oracle/oradata/dbconfig/FREE/dbs/orapwFREE.
+La carpeta $ORACLE_HOME/dbs completa es un enlace al volumen.
+Por tanto, ambos archivos persisten al recrear el contenedor.
+Evidencia: script/*_11-rutas-configuracion.script.log.
+
+El registro ORA-959 de las 17:25:52 UTC corresponde a
+DROP TABLESPACE IF EXISTS tbs_lab4 INCLUDING CONTENTS AND DATAFILES,
+en la preparación del banco de capacidad. Inmediatamente después
+el alert log confirma la creación correcta de TBS_LAB4.
+La limpieza posterior y la verificación final terminaron correctamente.
+Se cierra este punto de diagnóstico.
+Evidencia: script/*_15-contexto-ora00959.script.log.

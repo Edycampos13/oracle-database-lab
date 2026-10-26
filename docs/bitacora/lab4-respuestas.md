@@ -140,3 +140,10 @@ Las letras corresponden a las opciones del enunciado v3. Son respuestas razonada
 La verificación técnica E16 terminó TODO OK. Esto no acredita por sí solo el cierre documental, la revisión del PR ni los retos adicionales. RTO de restauración no medido. Comprobación de secretos, commits por partes, Issue, PR, revisión y etiquetas pendientes al redactar este archivo.
 
 Retos prácticos adicionales no acreditados con evidencia en esta conversación: configuración OMF persistente, diagnóstico por force_matching_signature, captura simultánea de sesión de mayor consumo y volcado de otro estudiante. No se presentan como realizados.
+
+## Actualización de la respuesta 21
+
+La comprobación con readlink confirmó que el SPFILE y el password file
+están dentro del volumen, bajo /opt/oracle/oradata/dbconfig/FREE/dbs/.
+Es la carpeta dbs completa la que está enlazada.
+Evidencia: script/*_11-rutas-configuracion.script.log.
