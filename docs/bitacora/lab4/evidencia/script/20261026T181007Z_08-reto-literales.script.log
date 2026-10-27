@@ -1,0 +1,8 @@
+
+Session altered.
+
+
+FORCE_MATCHING_SIGNATURE CURSORES_HIJOS SENTENCIAS_DISTINTAS EJECUCIONES EJEMPLO_SQL
+------------------------ -------------- -------------------- ----------- ----------------------------------------------------------------------------------------------------
+	      1.8632E+18	    701 		 701	     701 SELECT /* lab4_literal */ COUNT(*) FROM admin_academia.aca_estudiantes WHERE estudiante_id = 1000
+

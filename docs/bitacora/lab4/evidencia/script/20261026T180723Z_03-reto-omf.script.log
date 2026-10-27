@@ -1,0 +1,38 @@
+
+Session altered.
+
+== 1. Configurar el destino OMF en memoria y de forma persistente ==
+
+System altered.
+
+
+NAME			 VALUE
+------------------------ --------------------------------------------------------------------------------
+db_create_file_dest	 /opt/oracle/oradata/FREE/FREEPDB1
+
+1 row selected.
+
+== 2. Crear un tablespace de prueba sin indicar nombre de archivo ==
+
+Tablespace created.
+
+
+TABLESPACE_NAME 	       FILE_NAME
+------------------------------ ----------------------------------------------------------------------------------------------------
+TBS_LAB4_OMF		       /opt/oracle/oradata/FREE/FREEPDB1/FREE/55E54F210F100828E0630B00580ADFD0/datafile/o1_mf_tbs_lab4_ofz5
+			       pvq0_.dbf
+
+
+1 row selected.
+
+== 3. Eliminar exclusivamente el tablespace de prueba ==
+
+Tablespace dropped.
+
+
+TABLESPACES_PRUEBA_RESTANTES
+----------------------------
+			   0
+
+1 row selected.
+

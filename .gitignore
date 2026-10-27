@@ -1,2 +1,9 @@
 config/.env
 backups/
+
+# Archivos físicos de Oracle
+*.arc
+*.bkp
+*.ctl
+*.dbf
+*.trc
