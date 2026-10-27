@@ -45,3 +45,23 @@ La secuencia 21 era CURRENT y aún no estaba archivada.
 
 Evidencias: script/*_11-activar-archivelog.script.log y
 script/*_11-fra-llena.script.log.
+
+## Parte M: lectura consistente y coste del undo
+
+B vio ACTIVO mientras A mantenía EGRESADO sin confirmar.
+El intento de bloquear la fila produjo ORA-00054.
+Tras el COMMIT, B vio EGRESADO; Flashback Query recuperó ACTIVO
+desde undo y se reparó la fila 101 a ACTIVO.
+
+Para 10 000 filas, undo/redo total/redo del rollback, en KB:
+INSERT: 1128/4495/345.
+UPDATE: 568/1258/751.
+DELETE: 3416/6627/4701.
+
+Los cambios del undo se protegen con redo. La recuperación puede
+rehacer esos bloques antes de deshacer transacciones no confirmadas.
+ROLLBACK aplica nuevos cambios y también genera redo.
+UNDO_RETENTION=900 es un objetivo, no una garantía por sí solo.
+
+Evidencias: script/*_12-lectura-consistente.script.log y
+script/*_12-undo-y-redo.script.log.
