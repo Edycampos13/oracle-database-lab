@@ -141,3 +141,20 @@ FUZZY=YES con la base abierta no acredita por sí solo un fallo.
 Evidencias: script/*_15-healthcheck.script.log,
 script/*_15-comprobar-recuperacion.script.log y
 script/*_16-verificacion-final.script.log.
+
+## Parte P: salud y verificación final
+
+16-verificacion-final.sh terminó TODO OK.
+La FRA usaba 93 de 4096 MB; había tres control files,
+ningún grupo de redo con un solo miembro y backup RMAN COMPLETED.
+Las filas 101, 102 y 104 estaban ACTIVO; había 60 000 matrículas.
+
+Se investigó el aviso histórico de recuperación del archivo 26:
+V$RECOVER_FILE no devolvió filas. Los archivos 16 (Academia) y
+26 (TiendaSur) estaban ONLINE, sin error de cabecera y RECOVER=NO.
+FREEPDB1 estaba READ WRITE. No quedó recuperación pendiente.
+FUZZY=YES con la base abierta no acredita por sí solo un fallo.
+
+Evidencias: script/*_15-healthcheck.script.log,
+script/*_15-comprobar-recuperacion.script.log y
+script/*_16-verificacion-final.script.log.
