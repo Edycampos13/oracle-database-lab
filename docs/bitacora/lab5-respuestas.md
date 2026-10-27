@@ -18,3 +18,15 @@ IX_PED_CLIENTE se sustituye por un índice que empieza por ID_CLIENTE.
 El índice parcial contiene solo pedidos pendientes.
 El DNI único reduce la búsqueda de 1516 a 3 lecturas y garantiza unicidad
 (evidencia 03).
+
+## Parte K: multiplexación del redo
+
+Se conservaron tres grupos de 200 MB y se añadió un segundo miembro
+a cada uno. Tras dos cambios de log, redo02b.log seguía INVALID;
+un tercer cambio activó el grupo 2 y todos los miembros quedaron
+con estado vacío, sin INVALID.
+
+Se omitieron las pruebas de borrado del script original:
+con tres grupos, borrar uno no implica dejar menos de dos.
+Las copias están en el mismo volumen y no protegen de perderlo.
+Evidencias: script/*_10-redo.script.log y *_10-validar-miembros.script.log.
