@@ -30,3 +30,18 @@ Se omitieron las pruebas de borrado del script original:
 con tres grupos, borrar uno no implica dejar menos de dos.
 Las copias están en el mismo volumen y no protegen de perderlo.
 Evidencias: script/*_10-redo.script.log y *_10-validar-miembros.script.log.
+
+## Parte L: ARCHIVELOG y FRA llena
+
+La base ya estaba en ARCHIVELOG. Se configuró la FRA en
+/opt/oracle/oradata/fra con 4 GB mediante SCOPE=BOTH.
+Configurar primero la ruta produjo ORA-19802; tamaño y luego ruta funcionó.
+
+Al reducir temporalmente el límite a 2 MB en memoria, la secuencia 19
+no pudo archivarse: ORA-16038 y ORA-19809.
+Tras devolver el límite a 4 GB, las secuencias 19 y 20 quedaron
+archivadas. La FRA terminó con 4096 MB de límite y 11 MB usados.
+La secuencia 21 era CURRENT y aún no estaba archivada.
+
+Evidencias: script/*_11-activar-archivelog.script.log y
+script/*_11-fra-llena.script.log.
