@@ -1,0 +1,21 @@
+
+no rows selected
+
+
+     FILE#     CON_ID NAME											 STATUS
+---------- ---------- ------------------------------------------------------------------------------------------ -------
+	16	    3 /opt/oracle/oradata/FREE/FREEPDB1/academia01.dbf						 ONLINE
+	26	    3 /opt/oracle/oradata/FREE/FREEPDB1/tiendasur01.dbf 					 ONLINE
+
+
+     FILE#     CON_ID STATUS  ERROR				  REC FUZ
+---------- ---------- ------- ----------------------------------- --- ---
+	16	    3 ONLINE					  NO  YES
+	26	    3 ONLINE					  NO  YES
+
+
+NAME											   OPEN_MODE
+------------------------------------------------------------------------------------------ ----------
+PDB$SEED										   READ ONLY
+FREEPDB1										   READ WRITE
+
