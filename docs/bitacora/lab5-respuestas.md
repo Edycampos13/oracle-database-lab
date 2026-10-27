@@ -65,3 +65,62 @@ UNDO_RETENTION=900 es un objetivo, no una garantía por sí solo.
 
 Evidencias: script/*_12-lectura-consistente.script.log y
 script/*_12-undo-y-redo.script.log.
+
+## Simulacro A: caída de instancia
+
+RTO observado: 5 segundos, desde antes de SHUTDOWN ABORT hasta
+comprobar CDB/PDB abiertas y servicio healthy.
+RPO observado: 0 para el cambio confirmado probado.
+La fila 102 conservó EGRESADO; la 103 no conservó INACTIVO.
+El alert log mostró crash recovery y aplicación de redo.
+El script devolvió la fila 102 a ACTIVO.
+Evidencia: script/*_14a-caida-instancia.script.log.
+
+## Simulacro B: pérdida de un control file
+
+RTO observado: 9 segundos, incluyendo la parada planificada,
+el arranque fallido, diagnóstico, reparación y reapertura.
+No se restauraron datos antiguos: se repuso control03.ctl desde
+control01.ctl tras una parada limpia; no se observó pérdida de datos.
+El arranque falló con ORA-00205 y quedó STARTED.
+El alert log identificó control03.ctl con ORA-00202/ORA-27037.
+Después quedaron activas las tres copias y CDB/PDB READ WRITE.
+Evidencia: script/*_14b-perdida-controlfile.script.log.
+
+## Simulacro C: borrado de tabla
+
+DROP sin PURGE permitió recuperar ACA_MATRICULAS con Flashback Table:
+60 000 filas. Tras DROP PURGE apareció ORA-00942.
+La restauración completa de lab5-pre-simulacro devolvió las 60 000 filas.
+
+Tiempo de restauración medido: 109 segundos.
+Ventana potencial de pérdida indicada por el script: 2 segundos
+entre la finalización de la copia y el fallo.
+No equivale a dos segundos de datos de negocio perdidos:
+la restauración vuelve al estado de la copia y descarta cambios posteriores.
+
+Evidencia: script/*_14c-simulacro-restauracion.script.log.
+
+## Simulacro D: pérdida del datafile
+
+Se perdió el archivo 16, academia01.dbf.
+La consulta falló con ORA-01116, ORA-01110 y ORA-27041.
+FREEPDB1 quedó MOUNTED. RMAN ejecutó RESTORE y RECOVER,
+se puso el archivo ONLINE y se abrió la PDB en READ WRITE.
+La fila 104 conservó EGRESADO, confirmado después del backup:
+no se perdió el cambio probado. Después se devolvió a ACTIVO.
+RTO: 10 s de reparación y 11 s desde el fallo.
+Se comprobaron 20 000 estudiantes.
+Evidencia: script/*_14d-perdida-datafile.script.log.
+
+## Retrospectiva de los simulacros
+
+A: 5 s; B: 9 s; C: 109 s de restauración; D: 11 s desde el fallo.
+Los intervalos medidos no son idénticos: cada apartado define su inicio.
+C restauró todo el volumen y descartó cambios posteriores a la copia.
+D recuperó un archivo aplicando redo y conservó el cambio posterior.
+En D Oracle cerró toda FREEPDB1, así que el impacto superó TBS_ACADEMIA.
+
+Mejora propuesta: probar periódicamente restauraciones, conservar
+backups y redo en almacenamiento independiente y medir el RTO hasta
+una consulta de negocio correcta. No basta con disponer de backups.
